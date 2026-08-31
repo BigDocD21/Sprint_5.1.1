@@ -3,4 +3,4 @@ __pycache__/
 venv/
 .env
 .DS_Store
-locators_two
+locators_two.py
