@@ -16,6 +16,7 @@ class Locators:
         TAB_BUNS = (By.XPATH, "//div[contains(@class, 'tab_tab__1SPyG')]//span[contains(text(), 'Булки')]")
         TAB_SAUCES = (By.XPATH, "//div[contains(@class, 'tab_tab__1SPyG')]//span[contains(text(), 'Соусы')]")
         TAB_FILLINGS = (By.XPATH, "//div[contains(@class, 'tab_tab__1SPyG')]//span[contains(text(), 'Начинки')]")
+        INGREDIENTS_LIST = (By.CSS_SELECTOR, "ul[class^='BurgerIngredients_ingredients__list__']")
         
         @staticmethod
         def get_active_parent_locator(tab_locator_tuple):

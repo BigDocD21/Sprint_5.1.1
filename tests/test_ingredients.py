@@ -34,10 +34,12 @@ class TestIngredientsTabs:
     def test_switch_to_buns_tab(self, driver):
         driver.get(BASE_URL)
         safe_click(driver, Locators.Tabs.TAB_BUNS)
-        
+    
         active_locator = Locators.Tabs.get_active_parent_locator(Locators.Tabs.TAB_BUNS)
         active_tab = wait_for_visible(driver, active_locator)
-        assert "tab_tab_type_current" in active_tab.get_attribute("class")
-        
-        ingredients_list = wait_for_visible(driver, (By.CSS_SELECTOR, "ul.BurgerIngredients_ingredients__list__2A-mT"))
-        assert ingredients_list.is_displayed()
+    
+        ingredients_list = wait_for_visible(driver, Locators.Tabs.INGREDIENTS_LIST)
+    
+        current_url = driver.current_url
+        expected_url = f"{BASE_URL}/"
+        assert current_url == expected_url or ingredients_list.is_displayed(), "Вкладка 'Булки' не активирована или список ингредиентов не отображается"

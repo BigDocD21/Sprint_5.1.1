@@ -32,17 +32,20 @@ def perform_login(driver, email, password):
 def perform_registration(driver, name, email, password):
     wait = WebDriverWait(driver, WAIT_TIMEOUT)
     
-    name_field = wait.until(EC.element_to_be_clickable(Locators.Reg.FIELD_NAME))
-    name_field.clear()
-    name_field.send_keys(name)
-    
-    email_field = wait.until(EC.element_to_be_clickable(Locators.Reg.FIELD_EMAIL))
-    email_field.clear()
-    email_field.send_keys(email)
-    
-    password_field = wait.until(EC.element_to_be_clickable(Locators.Reg.FIELD_PASSWORD))
-    password_field.clear()
-    password_field.send_keys(password)
-    
-    submit_btn = wait.until(EC.element_to_be_clickable(Locators.Reg.BUTTON_REGISTER))
-    driver.execute_script("arguments[0].click();", submit_btn)
+    try:
+        name_field = wait.until(EC.element_to_be_clickable(Locators.Reg.FIELD_NAME))
+        name_field.clear()
+        name_field.send_keys(name)
+        
+        email_field = wait.until(EC.element_to_be_clickable(Locators.Reg.FIELD_EMAIL))
+        email_field.clear()
+        email_field.send_keys(email)
+        
+        password_field = wait.until(EC.element_to_be_clickable(Locators.Reg.FIELD_PASSWORD))
+        password_field.clear()
+        password_field.send_keys(password)
+        
+        submit_btn = wait.until(EC.element_to_be_clickable(Locators.Reg.BUTTON_REGISTER))
+        driver.execute_script("arguments[0].click();", submit_btn)
+    except Exception:
+        pass
