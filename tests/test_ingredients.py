@@ -38,8 +38,4 @@ class TestIngredientsTabs:
         active_locator = Locators.Tabs.get_active_parent_locator(Locators.Tabs.TAB_BUNS)
         active_tab = wait_for_visible(driver, active_locator)
     
-        ingredients_list = wait_for_visible(driver, Locators.Tabs.INGREDIENTS_LIST)
-    
-        current_url = driver.current_url
-        expected_url = f"{BASE_URL}/"
-        assert current_url == expected_url or ingredients_list.is_displayed(), "Вкладка 'Булки' не активирована или список ингредиентов не отображается"
+        assert "tab_tab_type_current" in active_tab.get_attribute("class"), "Список ингредиентов не отображается на вкладке 'Булки'"

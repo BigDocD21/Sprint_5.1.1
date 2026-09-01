@@ -34,6 +34,7 @@ class Locators:
         CHECK_LOGGED_IN = (By.CSS_SELECTOR, "a[href='/account']")
         LINK_LOGOUT = (By.XPATH, "//button[contains(text(), 'Выход')]")
         LINK_LOGIN_INSIDE_FORM = (By.CSS_SELECTOR, "a[href='/login']")
+        HEADER_TITLE = (By.CSS_SELECTOR, "h1.text_type_main-large")
 
     #4.Регистрация
     class Reg:

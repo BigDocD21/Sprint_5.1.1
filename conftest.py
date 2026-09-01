@@ -4,6 +4,9 @@ from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 from constants import WAIT_TIMEOUT
+from helpers import safe_click, perform_login, perform_registration, wait_for_visible
+from constants import BASE_URL, generate_unique_email, generate_unique_password
+from locators import Locators
 
 @pytest.fixture(scope="class")
 def driver():
@@ -27,3 +30,20 @@ def driver():
     driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
     yield driver
     driver.quit()
+
+@pytest.fixture(scope="class")
+def authorized_user(driver):
+    email = generate_unique_email()
+    password = generate_unique_password()
+    name = "Дима"
+
+    driver.get(f"{BASE_URL}/register")
+    perform_registration(driver, name, email, password)
+    
+    driver.get(f"{BASE_URL}/login")
+
+    perform_login(driver, email, password)
+
+    wait_for_visible(driver, Locators.Login.CHECK_LOGGED_IN)
+    
+    yield driver
